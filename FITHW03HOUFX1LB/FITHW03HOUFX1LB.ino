@@ -47,7 +47,8 @@ void setup () {
 
 void loop() {
 
-  czas = millis() / 1000;
+  unsigned long last_time = millis();
+  czas = last_time / 1000;
 
   float h = dht.readHumidity(); //wilgotnosc
   float t = dht.readTemperature(); //temperatura
@@ -68,6 +69,9 @@ void loop() {
 
     digitalWrite(acc, LOW);
   }
-  delay(1000); //Wykonuj pomiar co 1 sek.
+
+  delay_time = 1000 - (millis() - last_time); // wait 1s minus elapsed time 
+
+  delay(delay_time); //Wykonuj pomiar co 1 sek.
 
 }
