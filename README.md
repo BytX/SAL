@@ -10,7 +10,7 @@ To create a solution of monitoring the temperature and humidity in easy and chea
 
 Stay tuned!
 
-Work split:
+###### Project split
 
 SAL:
 * Projecting and constructing hardware
