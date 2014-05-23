@@ -47,8 +47,8 @@ void setup () {
 
 void loop() {
 
-  unsigned long first_time = millis();
-  czas = first_time / 1000;
+  unsigned long last_time = millis();
+  czas = last_time / 1000;
 
   float h = dht.readHumidity(); //wilgotnosc
   float t = dht.readTemperature(); //temperatura
