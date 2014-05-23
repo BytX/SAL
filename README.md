@@ -20,7 +20,7 @@ SAL :
 
 Evvira :
 
--Develop a user-friendly desktop apllication for windows and linux, which will allow to log and view data from the device.
+- Develop a user-friendly desktop apllication for windows and linux, which will allow to log and view data from the device.
 
 
-Currently not acceptin pull request from people not involved.
+Currently not accepting pull request from people not involved.
