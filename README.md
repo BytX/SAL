@@ -13,11 +13,11 @@ Stay tuned!
 Work split:
 
 SAL:
-..* Projecting and constructing hardware
-..* Writing a firmware (with Sekhmet assistance)
+* Projecting and constructing hardware
+* Writing a firmware (with Sekhmet assistance)
 
 Evviva:
-..* Develop a user-friendly desktop apllication for Windows, Linux and OSX, which will allow to log and view data from the device.
+* Develop a user-friendly desktop apllication for Windows, Linux and OSX, which will allow to log and view data from the device.
 
 
 **Currently not accepting pull request from people not involved.**
