@@ -1,7 +1,7 @@
 /*
 ================================================================================
 SimpleAVRLogger
-Version : 0.4b
+Version : 0.45b
 Code by Patryk Pietrzak, Wiktor Tkaczyński
 ================================================================================
 Program odczytuje dane z czujników typu DHT oraz fotorezystora. Następnie wysyła
@@ -41,8 +41,8 @@ DHT dht(DHTPIN, DHTTYPE);
 void setup () {
   Serial.begin(9600);
   pinMode(A0, INPUT); //pin fotorezystora
-  Serial.println("SimpleAVRLogger ver. 0.4b by Patryk Pietrzak, Wiktor Tkaczyński");
-  Serial.println("time t*C h% light");
+  Serial.println("SimpleAVRLogger ver. 0.45b by Patryk Pietrzak, Wiktor Tkaczyński");
+  Serial.println("TYPE time t*C h% light");
 }
 
 void loop() {
@@ -55,9 +55,9 @@ void loop() {
   int l = analogRead(A0); //swiatlo
 
   if (isnan(t) || isnan(h)) { //suma kontrolna, jesli wystapi blad
-    Serial.print(czas);
-    Serial.print(" ");
-    Serial.println("ERR|0"); //0 - bład połączenia/pomiaru
+    Serial.print("ERR|0"); //0 - bład połączenia/pomiaru
+    Serial.print("|");
+    Serial.println(czas);
   }
   else { //jesli wszystko ok, przeslij pomiary
     digitalWrite(acc, HIGH);
