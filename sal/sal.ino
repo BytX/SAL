@@ -26,15 +26,19 @@ https://github.com/adafruit/DHT-sensor-library
 
 #include "DHT.h"
 
-#define DHTPIN 2     // pin od czujnika
+#define DHTPIN 2
 
-#define DHTTYPE DHT22 // typ czujnika
+#define DHTTYPE DHT22
 
-float t = 0;
-float h = 0;
-unsigned long czas;
+float temperature = 0;
+float humidity = 0;
+int light = 0;
+
+unsigned long time;
+unsigned long last_time;
+long delay_time;
+
 uint8_t acc = 13;
-//char* s ="|"; //szajs
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -42,36 +46,35 @@ void setup () {
   Serial.begin(9600);
   pinMode(A0, INPUT); //pin fotorezystora
   Serial.println("SimpleAVRLogger ver. 0.45b by Patryk Pietrzak, Wiktor Tkaczyński");
-  Serial.println("TYPE time t*C h% light");
 }
 
 void loop() {
 
-  unsigned long last_time = millis();
-  czas = last_time / 1000;
+  last_time = millis();
+  time = last_time / 1000;
 
-  float h = dht.readHumidity(); //wilgotnosc
-  float t = dht.readTemperature(); //temperatura
-  int l = analogRead(A0); //swiatlo
+  humidity = dht.readHumidity(); 
+  temperature = dht.readTemperature();
+  light = analogRead(A0);
 
-  if (isnan(t) || isnan(h)) { //suma kontrolna, jesli wystapi blad
-    Serial.print("ERR|0"); //0 - bład połączenia/pomiaru
-    Serial.print("|");
-    Serial.println(czas);
+  if (isnan(temperature) || isnan(humidity)) {
+    char buf[128];
+    sprintf(buf, "ERR|%d|%d", 0, time);
+
+    Serial.print(buf);
   }
-  else { //jesli wszystko ok, przeslij pomiary
+  else { 
     digitalWrite(acc, HIGH);
     char buf[128];
-    sprintf(buf, "LOGED|%d|%f|%f|%d", czas, t, h, l);
-    //String returned_data = czas + s + t + s + h + s + l; //szajs
+    sprintf(buf, "LOGED|%d|%f|%f|%d", time, temperature, humidity, light);
 
-    Serial.println(buf); // wysyłanie pomiarow
-
+    Serial.print(buf); 
     digitalWrite(acc, LOW);
   }
 
-  delay_time = 1000 - (millis() - last_time); // wait 1s minus elapsed time 
-
-  delay(delay_time); //Wykonuj pomiar co 1 sek.
+  delay_time = 1000 - (millis() - last_time);
+  
+  if (delay_time > 0)
+    delay(delay_time);
 
 }
