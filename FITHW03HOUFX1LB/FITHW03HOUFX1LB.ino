@@ -62,7 +62,7 @@ void loop() {
   else { //jesli wszystko ok, przeslij pomiary
     digitalWrite(acc, HIGH);
     char buf[128];
-    sprintf(buf, "%d|%f|%f|%d", czas, t, h, l);
+    sprintf(buf, "LOGED|%d|%f|%f|%d", czas, t, h, l);
     //String returned_data = czas + s + t + s + h + s + l; //szajs
 
     Serial.println(buf); // wysyłanie pomiarow
