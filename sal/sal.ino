@@ -42,6 +42,7 @@ uint8_t acc = 13;
 
 DHT dht(DHTPIN, DHTTYPE);
 
+
 void setup () {
   Serial.begin(9600);
   pinMode(A0, INPUT); //pin fotorezystora
@@ -66,7 +67,19 @@ void loop() {
   else { 
     digitalWrite(acc, HIGH);
     char buf[128];
-    sprintf(buf, "LOGED|%d|%f|%f|%d", time, temperature, humidity, light);
+    
+    char time_a[20];
+    char temperature_a[5];
+    char humidity_a[5];
+    char light_a[5];
+    
+    dtostrf(time, 1, 2, time_a);
+    dtostrf(temperature, 1, 2, temperature_a);
+    dtostrf(humidity, 1, 2, humidity_a);
+    dtostrf(light, 1, 2, light_a);
+    
+    
+    sprintf(buf, "LOGED|%s|%s|%s|%s", time_a, temperature_a, humidity_a, light_a);
 
     Serial.print(buf); 
     digitalWrite(acc, LOW);
