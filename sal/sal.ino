@@ -72,9 +72,9 @@ void loop() {
     char humidity_a[5];
     char light_a[5];
     
-    dtostrf(temperature, 1, 2, temperature_a);
-    dtostrf(humidity, 1, 2, humidity_a);
-    dtostrf(light, 1, 2, light_a);
+    dtostrf(temperature, 4, 2, temperature_a);
+    dtostrf(humidity, 4, 2, humidity_a);
+    dtostrf(light, 4, 2, light_a);
     
     
     sprintf(buf, "LOGED|%ld|%s|%s|%s", time, temperature_a, humidity_a, light_a);
