@@ -68,18 +68,16 @@ void loop() {
     digitalWrite(acc, HIGH);
     char buf[128];
     
-    char time_a[20];
     char temperature_a[5];
     char humidity_a[5];
     char light_a[5];
     
-    dtostrf(time, 1, 2, time_a);
     dtostrf(temperature, 1, 2, temperature_a);
     dtostrf(humidity, 1, 2, humidity_a);
     dtostrf(light, 1, 2, light_a);
     
     
-    sprintf(buf, "LOGED|%s|%s|%s|%s", time_a, temperature_a, humidity_a, light_a);
+    sprintf(buf, "LOGED|%ld|%s|%s|%s", time, temperature_a, humidity_a, light_a);
 
     Serial.print(buf); 
     digitalWrite(acc, LOW);
